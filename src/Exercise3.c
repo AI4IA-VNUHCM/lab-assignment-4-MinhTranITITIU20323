@@ -47,11 +47,26 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 	}
 }
 
+void SortDiag(int row, int arr[SIZE][SIZE], int column, int incDec) {
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < row - 1; j++) {
+			int a = arr[j][column];
+			int b = arr[j + 1][column+1];
+			if ((incDec && a < b) || (!incDec && a > b)) {
+				arr[j][column] = b;
+				arr[j + 1][column] = a;
+			}
+		}
+	}
+}
+
 void Ex3(int in_arr[], int n){
 	int a[SIZE][SIZE];
 	Array2Dconverter(in_arr,a,n,n);
 	//Your codes here
-	
+	for (int i = 0; i < SIZE; i++) {
+		SortDiag(n, a, i, i % 2 == 0);
+	}
 	printArray(a,n,n);
 }
 
