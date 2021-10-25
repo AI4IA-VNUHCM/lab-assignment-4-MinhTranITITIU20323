@@ -49,11 +49,27 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 	}
 }
 
+
+void SortColumn(int row, int arr[SIZE][SIZE], int column, int incDec) {
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < row - 1; j++) {
+			int a = arr[j][column];
+			int b = arr[j + 1][column];
+			if ((incDec && a < b) || (!incDec && a > b)) {
+				arr[j][column] = b;
+				arr[j + 1][column] = a;
+			}
+		}
+	}
+}
+
 void Ex2(int arr[], int m, int n){
 	int a[SIZE][SIZE];
 	Array2Dconverter(arr,a,m,n);
 	//Your codes here
-
+	for (int i = 0; i < SIZE; i++) {
+		SortColumn(m, a, i, i % 2 == 0);
+	}
 	printArray(a, m, n);
 }
 
