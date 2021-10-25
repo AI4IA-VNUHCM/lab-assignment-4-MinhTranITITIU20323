@@ -4,7 +4,7 @@ Find the minimum element of each row then find the maximum
 number from those.
 Ex:
 ___________________________________________________________________________________
-| Input: 5(row) 4(col) 10 21 22 54 64 53 86 72 68 99 30 11 12 23 69 15 16 77 98 19 |
+| Input: 5 4 10 21 22 54 64 53 86 72 68 99 30 11 12 23 69 15 16 77 98 19 |
 | The converted 2D array will be like this:                                        |
 | 10 21 22 54                                                                      |
 | 64 53 86 72                                                                      |
@@ -32,11 +32,35 @@ void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
 		}
 	}
 }
+void Find(int arr[SIZE][SIZE],int m, int n,int temp[SIZE]){
+	int count=0;
+	for (int i = 0; i < m; i++) {
+		int min=arr[i][0];
+		for (int j = 1; j <= n; j++) {
+			if(arr[i][j]<min){
+				min=arr[i][j];
+			}
+			if(j==n-1){
+				temp[count]=min;
+				count++;
+			}
+		}
+	}
+	int max=temp[0];
+	for(int i=0;i<count;i++){
+		if(temp[i]>max){
+			max=temp[i];
+		}
+	}
+	printf("%d ", max);
+}
+
 
 void Ex5(int arr[], int m, int n){
-	int a[SIZE][SIZE];
+	int a[SIZE][SIZE],temp[SIZE];
 	Array2Dconverter(arr,a,m,n);
 	//Your codes here
+	Find(a,m,n,temp);
 
 }
 
